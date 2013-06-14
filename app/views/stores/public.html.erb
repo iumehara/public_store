@@ -1,0 +1,45 @@
+<h1 style="background:green; padding: 20px;">PUBLIC PAGE FOR <%= @store.name %></h1>
+
+<%= link_to "Go to private page =>", private_store_path(@store.id) %>
+<br>
+
+<h2>Line Item Summary</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.id %></td>
+        <td><%= line_item.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<h2>Staff Info</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.id %></td>
+        <td><%= staff.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

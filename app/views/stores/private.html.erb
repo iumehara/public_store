@@ -1,0 +1,54 @@
+<h1 style="background:red; padding: 20px;">PRIVATE PAGE FOR <%= @store.name %></h1>
+
+<%= link_to "Go to public page =>", public_store_path(@store.id) %>
+<br>
+
+<h2>Line Item Summary</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>PRIVATE!</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.id %></td>
+        <td><%= line_item.name %></td>
+        <td><%= line_item.private_info %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<h2>Staff Info</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>CREDENTIALS</th>
+      <th>EMAIL</th>
+      <th>PASSWORD</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.id %></td>
+        <td><%= staff.name %></td>
+        <td><%= Invitation.where(staff_id: staff.id, store_id: @store.id).first.credential %></td>
+        <td><%= staff.email %></td>
+        <td><%= staff.password_digest %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

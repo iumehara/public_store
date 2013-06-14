@@ -8,6 +8,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'annotate'
+gem 'faker'
 
 group :development, :test do
 	gem 'rspec-rails'
@@ -23,5 +26,3 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'

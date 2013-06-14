@@ -1,0 +1,29 @@
+<h1>Member Stores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Line Items</th>
+      <th>Public Page</th>
+      <th>Private Page</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= store.id %></td>
+        <td><%= store.name %></td>
+        <td><%= store.line_items.count %></td>
+        <td><%= link_to 'private', private_store_path(store.id) %></td>
+        <td><%= link_to 'public', public_store_path(store.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Staff', new_staff_path %>

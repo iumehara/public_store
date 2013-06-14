@@ -1,4 +1,12 @@
 PublicRspec::Application.routes.draw do
+  resources :staffs
+
+  resources :invitations
+
+  get 'stores' => 'stores#index'
+  get 'stores/:id/private' => 'stores#private', :as => "private_store"
+  get 'stores/:id/public' => 'stores#public', :as => "public_store"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
