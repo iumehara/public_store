@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
+  before_action :correct_credential, only: [:private]
 
   def index
     @stores = Store.all
@@ -27,4 +28,11 @@ class StoresController < ApplicationController
     def store_params
       params.require(:store).permit(:name)
     end
+
+    def correct_credential
+      unless current_staff && current_staff.invitations.first.credential == "private"
+        redirect_to public_store_path
+      end
+    end
+
 end

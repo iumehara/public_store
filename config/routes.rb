@@ -1,4 +1,8 @@
 PublicRspec::Application.routes.draw do
+
+  root 'sessions#new'
+
+  resources :sessions
   resources :staffs
 
   resources :invitations

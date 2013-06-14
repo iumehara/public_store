@@ -1,0 +1,17 @@
+<h1 style="border: 2px solid gray; padding: 10px; background: yellow;">Welcome to the Public/Private Store Data App!</h1>
+<br>
+<h2>Please sign in below</h2>
+<br>
+<div class="row">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+
+    <%= f.label :email, 'email or username' %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password, 'password' %>
+    <%= f.password_field :password %>
+
+    <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+</div>

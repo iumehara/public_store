@@ -1,4 +1,8 @@
 <h1>Member Stores</h1>
+<% unless current_staff.nil? %>
+  <h2>Hi <%= current_staff.name %>, welcome to Public/Private App!</h2>
+<% end %>
+<br>
 
 <table>
   <thead>

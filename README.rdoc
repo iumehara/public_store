@@ -1,28 +1,23 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+RSPEC
+group :development, :test do
+	gem 'rspec-rails'
+end
+group :test do
+	gem 'selenium-webdriver'
+	gem 'capybara'
+	gem 'factory_girl_rails'
+	gem 'launchy'
+end
+
+spec/spec_helper.rb
+add config.include Capybara::DSL
+
+
+ZEUS
+
+gem install zeus
+
+spec/spec_helper.rb
+comment out require 'rspec/autorun'
