@@ -5,38 +5,38 @@ Rails 4.0.0.rc2
 
 *MODELS*
 
-Staffs</br>
-attributes :name, :email, :password</br>
-has_many :stores</br>
+* Staffs
+* attributes :name, :email, :password
+* has_many :stores
 
-Invitations</br>
-attributes :user_id, :store_id, :credential</br>
-belongs_to :staff</br>
-belongs_to :store</br>
+* Invitations
+* attributes :user_id, :store_id, :credential
+* belongs_to :staff
+* belongs_to :store
 
-Stores</br>
-attributes :name</br>
-has_many :invitations</br>
+* Stores
+* attributes :name
+* has_many :invitations
 
-LineItems</br>
-attributes :store_id, :private_info</br>
-belongs_to :store</br>
+* LineItems
+* attributes :store_id, :private_info
+* belongs_to :store
 
 
 *RSPEC*
-group :development, :test do</br>
-	gem 'rspec-rails'</br>
-end</br>
-group :test do</br>
-	gem 'selenium-webdriver'</br>
-	gem 'capybara'</br>
-	gem 'factory_girl_rails'</br>
-	gem 'launchy'</br>
-end</br>
+* group :development, :test do
+	* gem 'rspec-rails'
+* end
+* group :test do
+* 	gem 'selenium-webdriver'
+	* gem 'capybara'
+	* gem 'factory_girl_rails'
+	* gem 'launchy'
+* end
 
-in `spec/spec_helper.rb`, add config.include Capybara::DSL</br>
+* in `spec/spec_helper.rb`, add config.include Capybara::DSL
 
 
 *ZEUS*
-gem install zeus</br>
-in `spec/spec_helper.rb`, comment out require 'rspec/autorun'</br>
+* gem install zeus
+* in `spec/spec_helper.rb`, comment out require 'rspec/autorun'
