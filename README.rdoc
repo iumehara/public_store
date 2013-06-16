@@ -1,42 +1,21 @@
 *CONFIG*
+
 ruby-2.0.0-p195
 Rails 4.0.0.rc2
 
 
 *MODELS*
 
-* Staffs
-* attributes :name, :email, :password
-* has_many :stores
+Staffs: <b>attributes</b> :name, :email, :password <b>has_many</b> :stores
 
-* Invitations
-* attributes :user_id, :store_id, :credential
-* belongs_to :staff
-* belongs_to :store
+Invitations <b>attributes</b> :user_id, :store_id, :credential <b>belongs_to</b> :staff, :store
 
-* Stores
-* attributes :name
-* has_many :invitations
+Stores <b>attributes</b> :name <b>has_many</b> :invitations
 
-* LineItems
-* attributes :store_id, :private_info
-* belongs_to :store
+LineItems <b>attributes</b> :store_id, :private_info <b>belongs_to</b> :store
 
 
 *RSPEC*
-* group :development, :test do
-	* gem 'rspec-rails'
-* end
-* group :test do
-* 	gem 'selenium-webdriver'
-	* gem 'capybara'
-	* gem 'factory_girl_rails'
-	* gem 'launchy'
-* end
-
+gem: 'rspec-rails', 'selenium-webdriver', 'capybara', 'factory_girl_rails'
 * in `spec/spec_helper.rb`, add config.include Capybara::DSL
 
-
-*ZEUS*
-* gem install zeus
-* in `spec/spec_helper.rb`, comment out require 'rspec/autorun'
