@@ -1,6 +1,29 @@
+*CONFIG*
+ruby-2.0.0-p195
+Rails 4.0.0.rc2
 
 
-RSPEC
+*MODELS*
+
+Staffs
+attributes :name, :email, :password
+has_many :stores
+
+Invitations
+attributes :user_id, :store_id, :credential
+belongs_to :staff
+belongs_to :store
+
+Stores
+attributes :name
+has_many :invitations
+
+LineItems
+attributes :store_id, :private_info
+belongs_to :store
+
+
+*RSPEC*
 group :development, :test do
 	gem 'rspec-rails'
 end
@@ -11,13 +34,9 @@ group :test do
 	gem 'launchy'
 end
 
-spec/spec_helper.rb
-add config.include Capybara::DSL
+in `spec/spec_helper.rb`, add config.include Capybara::DSL
 
 
-ZEUS
-
+*ZEUS*
 gem install zeus
-
-spec/spec_helper.rb
-comment out require 'rspec/autorun'
+in `spec/spec_helper.rb`, comment out require 'rspec/autorun'

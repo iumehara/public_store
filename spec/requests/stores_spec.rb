@@ -1,27 +1,9 @@
 require 'spec_helper'
 
+
 describe "Stores" do
 
   subject { page }
-
-  # describe "index page" do
-  #   before do
-  #   	5.times { FactoryGirl.create(:store)}
-  #     visit stores_path
-  #   end
-  #   it "should have correct titles" do
-  #     page.should have_selector('h1', :text => 'Member Stores')
-  #     page.should have_selector('th', :text => 'ID')
-  #   end
-  #   it "should have link to private pages" do
-  #   	first(:link, 'private').click
-  #   	page.should have_selector('h1', 'PRIVATE PAGE FOR')
-  #   end
-  #   it "should have link to publice pages" do
-  #   	first(:link, 'public').click
-  #   	page.should have_selector('h1', 'PUBLIC PAGE FOR')
-  #   end
-  # end
 
   describe "login" do
   	before do
@@ -60,20 +42,45 @@ describe "Stores" do
     before do
       @fred = FactoryGirl.create(:staff, name: "fred", email: "fred@email.com")
       @friendlys = FactoryGirl.create(:store, name: "friendlys")
+      @sonic = FactoryGirl.create(:store, name: "sonic")
       @invite_1 = FactoryGirl.create(:invitation, staff_id: Staff.first.id, store_id: Store.first.id, credential: "public")
-      visit root_path
-      fill_in "email or username", with: @fred.email
-      fill_in "password", with: @fred.password
-      click_button "Sign in"
     end
-    it "should not go to private page" do
+    it "shouldn't allow random to stores index page" do
+      visit stores_path
+      page.should have_selector('h1', :text => 'Welcome to the Public/Private Store Data App!')
+      page.should have_selector('h2', :text => 'Please sign in below')
+    end
+    it "shouldn't allow random to public store page" do
+      visit public_store_path(@friendlys)
+      page.should have_selector('h1', :text => 'Welcome to the Public/Private Store Data App!')
+      page.should have_selector('h2', :text => 'Please sign in below')
+    end
+    it "shouldn't allow random to private store page" do
+      visit private_store_path(@friendlys)
+      page.should have_selector('h1', :text => 'Welcome to the Public/Private Store Data App!')
+      page.should have_selector('h2', :text => 'Please sign in below')
+    end
+    it "should allow public cred to public page" do
+      valid_signin(@fred)
+      first(:link, 'public').click
+      page.should have_selector('h1', :text => 'PUBLIC PAGE FOR')
+    end
+    it "shouldn't allow public cred to private page" do
+      valid_signin(@fred)
       first(:link, 'private').click
-      page.should have_selector('h1', 'PUBLIC PAGE FOR')
+      page.should have_selector('h1', :text => 'Member Stores')
     end
-    it "should not go to private page" do
+    it "should allow private cred to private page" do
+      valid_signin(@fred)
       @invite_1.update(credential: "private")
       first(:link, 'private').click
-      page.should have_selector('h1', 'PRIVATE PAGE FOR')
+      page.should have_selector('h1', :text => 'PRIVATE PAGE FOR')
+    end
+    it "shouldn't allow non-staff private cred to public page" do
+      valid_signin(@fred)
+      @invite_1.update(credential: "private")
+      page.all(:link, 'private')[1].click
+      page.should have_selector('h1', :text => 'Member Stores')
     end
   end
 end
